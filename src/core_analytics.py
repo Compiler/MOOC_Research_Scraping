@@ -1,4 +1,4 @@
-import os
+import os, json
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
 from googleapiclient.discovery import build
@@ -9,7 +9,11 @@ SCOPES = ['https://www.googleapis.com/auth/yt-analytics.readonly']
 
 API_SERVICE_NAME = 'youtubeAnalytics'
 API_VERSION = 'v2'
-CLIENT_SECRETS_FILE = 'YOUR_CLIENT_SECRET_FILE.json'
+#API_KEY = os.environ["YOUTUBE_API_KEY"]
+CLIENT_SECRETS_FILE = 'client_secret.json'
+
+SCOPES = ['https://www.googleapis.com/auth/yt-analytics.readonly']
+
 def get_service():
   flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
   credentials = flow.run_console()
@@ -33,7 +37,7 @@ if __name__ == '__main__':
       ids='channel==MINE',
       startDate='2017-01-01',
       endDate='2017-12-31',
-      metrics='estimatedMinutesWatched,views,likes,subscribersGained'
+      metrics='estimatedMinutesWatched,views,likes,subscribersGained',
       dimensions='day',
       sort='day'
   )
