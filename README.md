@@ -10,3 +10,5 @@
 > python src/core.py
 
 > python src/core_analytics.py
+
+Only authorized users will be able to validate and run the code.
