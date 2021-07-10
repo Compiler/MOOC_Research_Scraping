@@ -28,15 +28,15 @@ def execute_api_request(client_library_function, **kwargs):
 
 if __name__ == '__main__':
   # Disable OAuthlib's HTTPs verification when running locally.
-  # *DO NOT* leave this option enabled when running in production.
   os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-
+  start_date = '2021-06-22'
+  end_date = '2021-06-29'
   youtubeAnalytics = get_service()
   execute_api_request(
       youtubeAnalytics.reports().query,
       ids='channel==MINE',
-      startDate='2017-01-01',
-      endDate='2017-12-31',
+      startDate=start_date,
+      endDate=end_date,
       metrics='estimatedMinutesWatched,views,likes,subscribersGained',
       dimensions='day',
       sort='day'
